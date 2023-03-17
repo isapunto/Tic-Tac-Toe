@@ -1,3 +1,5 @@
+package tr3;
+
 import java.util.Scanner;
 
 public class Tablero {
