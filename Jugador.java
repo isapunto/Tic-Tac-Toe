@@ -1,7 +1,6 @@
-package tr3;
+package tresraya;
 
 public class Jugador {
-	private boolean IA;
 	private String nombre;
 	private char ficha;
 
@@ -26,7 +25,7 @@ public class Jugador {
 	}
 
 	public String toString() {
-		return "El jugador se llama " + this.nombre + " y jugara con " + this.ficha + ".";
+		return "El jugador se llama " + this.nombre;
 	}
 
 	public static void main(String[] args) {

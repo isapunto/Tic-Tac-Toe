@@ -1,4 +1,4 @@
-package tr3;
+package tresraya;
 
 public class Juego {
 	private Tablero tablero;
@@ -36,12 +36,6 @@ public class Juego {
 		this.jugador2 = jugador2;
 	}
 
-	@Override
-	public String toString() {
-		return "Comienza el juego con " + this.jugador1 + " y " + this.jugador2
-				+ ". A continuacion el tablero de juego: " + this.tablero;
-	}
-
 	public void mostrarTurnoActual() {
 
 		if (turno) {
@@ -54,6 +48,37 @@ public class Juego {
 
 	public void cambiaTurno() {
 		this.turno = !this.turno;
+
 	}
 
+	public boolean gameOver() {
+
+		if (tablero.comprobarFila() == true || tablero.comprobarColumna() == true || tablero.comprobarDiagonal() == true
+				|| tablero.lleno() == true) {
+			return true;
+		}
+
+		return false;
+	}
+
+	public boolean empate() {
+		if (tablero.lleno()) {
+
+		}
+		return true;
+	}
+
+	public String ganador() {
+		String resultado = "Ha ganado " + jugador1.getNombre() + "!!";
+		if (!turno) {
+			resultado = "Ha ganado " + jugador2.getNombre() + "!!";
+		}
+		return resultado;
+	}
+
+	@Override
+	public String toString() {
+		return "Comienza el juego con " + this.jugador1 + " y " + this.jugador2
+				+ ". A continuacion el tablero de juego: " + this.tablero;
+	}
 }

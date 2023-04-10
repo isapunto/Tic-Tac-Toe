@@ -1,4 +1,4 @@
-package tr3;
+package tresraya;
 
 public class Celda {
 	private char valor;
@@ -18,6 +18,7 @@ public class Celda {
 	}
 
 	public boolean isOcupada() {
+		
 		return ocupada;
 	}
 
@@ -27,7 +28,7 @@ public class Celda {
 
 	@Override
 	public String toString() {
-		return "La celda tiene un valor de " + this.valor + " y esta ocupada:" + this.ocupada;
+		return "" + this.valor;
 	}
 
 }
