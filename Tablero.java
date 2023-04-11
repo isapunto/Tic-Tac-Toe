@@ -11,56 +11,42 @@ public class Tablero {
 			}
 		}
 	}
-
 	public Tablero(Celda[][] matrizTablero) {
 		this.matrizTablero = matrizTablero;
 	}
-
 	public Celda[][] getMatrizTablero() {
 		return this.matrizTablero;
 	}
-
 	public void setMatrizTablero(Celda[][] matrizTablero) {
 		this.matrizTablero = matrizTablero;
 	}
-
 	public void fichaEnTablero(char ficha, int[] posicion) {
 		matrizTablero[posicion[0]][posicion[1]].setValor(ficha);
 		matrizTablero[posicion[0]][posicion[1]].setOcupada(true);
 	}
-
 	public boolean celdaOcupada(int[] posicion) {
 		return matrizTablero[posicion[0]][posicion[1]].isOcupada();
 	}
-
 	public boolean comprobarFila() {
-		boolean filaBien, encontrado = false;
-		char simbolo = 0;
-		for (int i = 0; i < 3 && !encontrado; i++) { // Fila
-			filaBien = true;
-			for (int j = 0; j < 3 && filaBien; j++) { // Columna
-				filaBien = (simbolo == matrizTablero[i][j].getValor());
-			}
-			encontrado = filaBien;
-		}
-		return encontrado;
+		
+		return (matrizTablero[0][0].getValor() == matrizTablero[0][1].getValor()
+				&& matrizTablero[0][0].getValor() == matrizTablero[0][2].getValor())
+				|| (matrizTablero[1][0].getValor() == matrizTablero[1][1].getValor()
+						&& matrizTablero[1][0].getValor() == matrizTablero[1][2].getValor())
+						|| (matrizTablero[2][0].getValor() == matrizTablero[2][1].getValor()
+								&& matrizTablero[2][0].getValor() == matrizTablero[2][2].getValor());
 	}
-
-	public boolean comprobarColumna() { 
-		boolean culumnaBien, encontrado = false;
-		char simbolo = 0;
-		for (int i = 0; i < 3 && !encontrado; i++) { // Fila
-			culumnaBien = true;
-			for (int j = 0; j < 3 && culumnaBien; j++) { // Columna
-				culumnaBien = (simbolo == matrizTablero[j][i].getValor());
-			}
-			encontrado = culumnaBien;
-		}
-		return encontrado;
+	public boolean comprobarColumna() {
+		
+		return (matrizTablero[0][0].getValor() == matrizTablero[1][0].getValor()
+				&& matrizTablero[0][0].getValor() == matrizTablero[2][0].getValor())
+				|| (matrizTablero[0][1].getValor() == matrizTablero[1][1].getValor()
+						&& matrizTablero[0][1].getValor() == matrizTablero[2][1].getValor())
+						|| (matrizTablero[0][2].getValor() == matrizTablero[1][2].getValor()
+								&& matrizTablero[0][2].getValor() == matrizTablero[2][2].getValor());
 	}
-
-	
-	public boolean comprobarDiagonal() { 
+	public boolean comprobarDiagonal() {
+		
 		return (matrizTablero[0][2].getValor() == matrizTablero[1][1].getValor()
 				&& matrizTablero[0][2].getValor() == matrizTablero[2][0].getValor())
 				|| (matrizTablero[0][0].getValor() == matrizTablero[1][1].getValor()
@@ -68,17 +54,16 @@ public class Tablero {
 
 	}
 	public boolean lleno() {
+	
 		boolean ocupada = true;
-		
-		for (int i = 0; i < 3 || ocupada; i++) { // Fila
-			for (int j = 0; j < 3 || ocupada; j++) { // Columna
-				matrizTablero[i][j].isOcupada();//me da error
-		}
-
+		for (int i = 0; i < 3 && ocupada; i++) { // Fila
+			for (int j = 0; j < 3 && ocupada; j++) { // Columna
+				ocupada = matrizTablero[i][j].isOcupada();
+				
+			}
 	  }
 		return ocupada;
 	}
-
 	public int[] posicion(char letra) {
 		int[] pos = new int[2];
 		switch (letra) {
@@ -124,7 +109,6 @@ public class Tablero {
 		}
 		return pos;
 	}
-
 	public String toString() {
 		String tablero = "";
 		for (int i = 0; i < 3; i++) {
@@ -135,7 +119,6 @@ public class Tablero {
 		}
 		return tablero;
 	}
-
 	public static void main(String[] args) {
 		Tablero tablero = new Tablero();
 		System.out.println(tablero);
