@@ -28,6 +28,7 @@ public class Juego {
 	public void setJugador2(Jugador jugador2) {
 		this.jugador2 = jugador2;
 	}
+
 	public void mostrarTurnoActual() {
 
 		if (turno) {

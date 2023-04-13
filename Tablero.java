@@ -29,21 +29,43 @@ public class Tablero {
 	}
 	public boolean comprobarFila() {
 		
-		return (matrizTablero[0][0].getValor() == matrizTablero[0][1].getValor()
+		
+		/*return (matrizTablero[0][0].getValor() == matrizTablero[0][1].getValor()
 				&& matrizTablero[0][0].getValor() == matrizTablero[0][2].getValor())
 				|| (matrizTablero[1][0].getValor() == matrizTablero[1][1].getValor()
 						&& matrizTablero[1][0].getValor() == matrizTablero[1][2].getValor())
 						|| (matrizTablero[2][0].getValor() == matrizTablero[2][1].getValor()
-								&& matrizTablero[2][0].getValor() == matrizTablero[2][2].getValor());
+								&& matrizTablero[2][0].getValor() == matrizTablero[2][2].getValor()); */
+		boolean filaBien, encontrado = false;
+		char simbolo = 0;
+		for (int i = 0; i < 3 && !encontrado; i++) { // Fila
+			filaBien = true;
+			for (int j = 0; j < 3 && filaBien; j++) { // Columna
+				filaBien = (simbolo == matrizTablero[i][j].getValor());
+			}
+			encontrado = filaBien;
+		}
+		return encontrado;
 	}
+	
 	public boolean comprobarColumna() {
 		
-		return (matrizTablero[0][0].getValor() == matrizTablero[1][0].getValor()
+		/*return (matrizTablero[0][0].getValor() == matrizTablero[1][0].getValor()
 				&& matrizTablero[0][0].getValor() == matrizTablero[2][0].getValor())
 				|| (matrizTablero[0][1].getValor() == matrizTablero[1][1].getValor()
 						&& matrizTablero[0][1].getValor() == matrizTablero[2][1].getValor())
 						|| (matrizTablero[0][2].getValor() == matrizTablero[1][2].getValor()
-								&& matrizTablero[0][2].getValor() == matrizTablero[2][2].getValor());
+								&& matrizTablero[0][2].getValor() == matrizTablero[2][2].getValor());*/
+		boolean culumnaBien, encontrado = false;
+		char simbolo = 0;
+		for (int i = 0; i < 3 && !encontrado; i++) { // Fila
+			culumnaBien = true;
+			for (int j = 0; j < 3 && culumnaBien; j++) { // Columna
+				culumnaBien = (simbolo == matrizTablero[j][i].getValor());
+			}
+			encontrado = culumnaBien;
+		}
+		return encontrado;
 	}
 	public boolean comprobarDiagonal() {
 		

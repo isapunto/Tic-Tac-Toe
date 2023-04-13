@@ -13,6 +13,7 @@ public class main3Raya {
 		int[] posicion = new int[2];
 		char letraMetida;
 		String nombreJugador, ganador = "";
+		int turno = 1;
 
 		// Empieza el juego
 
@@ -25,39 +26,44 @@ public class main3Raya {
 		jugador2.setNombre(nombreJugador);
 		System.out.println("Jugador 1: " + jugador1.getNombre() + " X");
 		System.out.println("Jugador 2: " + jugador2.getNombre() + " O");
-		System.out.println(tablero.toString());
 
 		while (!juego.gameOver()) {
 
-			System.out.println(jugador1.getNombre() + ", es tu turno.");
-			System.out.println(tablero.toString());
-			System.out.println("Por favor, introduce la letra donde quieres poner tu ficha: ");
-			letraMetida = sc.next().charAt(0);
-			posicion = tablero.posicion(letraMetida); // Me devuelve la posición en la que quiero meter la ficha.
-			if (!tablero.celdaOcupada(posicion)) {
-				char ficha = 'X';
-				tablero.fichaEnTablero(ficha, posicion);
+			if (turno == 1) {
+
+				System.out.println(jugador1.getNombre() + ", es tu turno.");
+				System.out.println(tablero.toString());
+				System.out.println("Por favor, introduce la letra donde quieres poner tu ficha: ");
+				letraMetida = sc.next().charAt(0);
+				posicion = tablero.posicion(letraMetida); // Me devuelve la posición en la que quiero meter la ficha.
+				if (!tablero.celdaOcupada(posicion)) {
+					char ficha = 'X';
+					tablero.fichaEnTablero(ficha, posicion);
+				}
+				System.out.println(tablero.toString());
+
+				if (juego.gameOver())
+					ganador = jugador1.getNombre(); // si juego es gameOver el ganador por defecto es el jugador1, es
+													// para
+
+				turno = 2;
+			} else {
+
+				System.out.println(jugador2.getNombre() + ", es tu turno.");
+				System.out.println(tablero.toString());
+				System.out.println("Por favor, introduce la letra donde quieres poner tu ficha: ");
+				letraMetida = sc.next().charAt(0);
+				posicion = tablero.posicion(letraMetida); // Me devuelve la posición en la que quiero meter la ficha.
+				if (!tablero.celdaOcupada(posicion)) {
+					char ficha = 'O';
+					tablero.fichaEnTablero(ficha, posicion);
+				}
+				System.out.println(tablero.toString());
+
+				if (juego.gameOver() && ganador == "")
+					ganador = jugador2.getNombre();// si el juego es game over y un jugador sin asignar, gana jugador 2
+				turno = 1;
 			}
-			System.out.println(tablero.toString());
-
-			if (juego.gameOver())
-				ganador = jugador1.getNombre(); // si juego es gameOver el ganador por defecto es el jugador1, es para
-												// que compruebe si hay ganador al final del turno
-
-			// Cambio de jugador
-			System.out.println(jugador2.getNombre() + ", es tu turno.");
-			System.out.println(tablero.toString());
-			System.out.println("Por favor, introduce la letra donde quieres poner tu ficha: ");
-			letraMetida = sc.next().charAt(0);
-			posicion = tablero.posicion(letraMetida); // Me devuelve la posición en la que quiero meter la ficha.
-			if (!tablero.celdaOcupada(posicion)) {
-				char ficha = 'O';
-				tablero.fichaEnTablero(ficha, posicion);
-			}
-			System.out.println(tablero.toString());
-
-			if (juego.gameOver() && ganador == "")
-				ganador = jugador2.getNombre();// si el juego es game over y un jugador sin asignar, gana jugador 2
 		}
 
 		if (juego.empate()) {
